@@ -1,0 +1,5 @@
+services:
+  ds_twig_extensions.twig.apply_prefix:
+      class: Drupal\ds_twig_extensions\ApplyPrefix
+      tags:
+        - { name: twig.extension }
