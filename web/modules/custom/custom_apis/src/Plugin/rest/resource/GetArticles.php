@@ -67,4 +67,21 @@ class GetArticles extends ResourceBase
      \Drupal::logger('custom-rest')->error($e->getMessage());
    }
  }
+  /**
+   * Patch api
+   */
+  public function patch($data){
+    try {
+
+      $term = Term::load($data['tid']);
+      $term->setName($data['name']);
+      $term->field_custom_title->setValue($data['sub_title']);
+
+      $term->save();
+
+      return new ResourceResponse('Term updated successfully');
+    } catch (EntityStorageException $e) {
+      \Drupal::logger('custom-rest')->error($e->getMessage());
+    }
+  }
 }
